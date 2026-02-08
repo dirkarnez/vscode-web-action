@@ -37,7 +37,9 @@ jobs:
           ref: '${{ github.event.inputs.repo-ref }}' # The branch, tag or SHA to checkout
           
       - run: |
-          git config --global user.name "dirkarnez" && git config --global user.email "smalldirkalex@gmail.com" 
+          git config --global user.name "dirkarnez" && \
+          git config --global user.email "smalldirkalex@gmail.com" && \
+          git config --global core.fileMode false
           
       - run: |
           sudo chmod -R +x . && \
