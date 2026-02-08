@@ -1,6 +1,21 @@
 name: vscode-server
 on:
   workflow_dispatch:
+    inputs:
+      gh-user:
+        description: 'GitHub user name'
+        required: true
+        default: 'dirkarnez'
+        type: string # Supported types: string, choice, boolean, environment
+      gh-repo:
+        description: 'GitHub repository'
+        required: true
+        type: string # Supported types: string, choice, boolean, environment
+      repo-ref:
+        description: 'The branch, tag or SHA to checkout'
+        required: false
+        default: 'main'
+        type: string # Supported types: string, choice, boolean, environment
 
 permissions:
     contents: write
@@ -10,7 +25,20 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
+      
+      - uses: actions/checkout@v6
+        with:
+          # Repository name with owner. For example, actions/checkout
+          # Default: ${{ github.repository }}
+          repository: '${{ github.event.inputs.gh-user }}/${{ github.event.inputs.gh-repo }}'
+          path: '${{ github.event.inputs.gh-repo }}'
+          token: '${{ secrets.GH_PAT }}' # `GH_PAT` is a secret that contains your PAT
+          ref: '${{ github.event.inputs.repo-ref }}' # The branch, tag or SHA to checkout
+
+    # The branch, tag or SHA to checkout. When checking out the repository that
+    # triggered a workflow, this defaults to the reference or SHA for that event.
+    # Otherwise, uses the default branch.
 
       - name: 🐛 Debug Build
         uses: stateful/vscode-server-action@v1
