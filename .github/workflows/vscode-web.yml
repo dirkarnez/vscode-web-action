@@ -35,7 +35,14 @@ jobs:
           path: '${{ github.event.inputs.gh-repo }}'
           token: '${{ secrets.GH_PAT }}' # `GH_PAT` is a secret that contains your PAT
           ref: '${{ github.event.inputs.repo-ref }}' # The branch, tag or SHA to checkout
-
+          
+      - run: |
+          git config --global user.name "dirkarnez" && git config --global user.email "smalldirkalex@gmail.com" 
+          
+      - run: |
+          sudo chmod -R +x . && \
+          ls
+      
     # The branch, tag or SHA to checkout. When checking out the repository that
     # triggered a workflow, this defaults to the reference or SHA for that event.
     # Otherwise, uses the default branch.
