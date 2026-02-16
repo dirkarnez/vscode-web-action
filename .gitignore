@@ -1,4 +1,5 @@
 *
 !.github
 !.gitignore
+!.vscode/extensions.json
 !README.md
