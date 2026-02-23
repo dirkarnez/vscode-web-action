@@ -43,12 +43,15 @@ jobs:
           token: '${{ secrets.GH_PAT }}' # `GH_PAT` is a secret that contains your PAT
           ref: '${{ github.event.inputs.repo-ref }}' # The branch, tag or SHA to checkout
           
-      - run: |
+      - shell: bash
+        run: |
           git config --global user.name "dirkarnez" && \
           git config --global user.email "smalldirkalex@gmail.com" && \
           git config --global core.fileMode false
           
-      - run: |
+      - shell: bash
+        if: ${{ github.event.inputs.chosen-os != 'windows-latest' }}
+        run: |
           sudo chmod -R +x . && \
           ls
       
