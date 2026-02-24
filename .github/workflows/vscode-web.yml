@@ -59,7 +59,12 @@ jobs:
     # triggered a workflow, this defaults to the reference or SHA for that event.
     # Otherwise, uses the default branch.
 
-      - name: 🐛 Debug Build
+      - if: ${{ github.event.inputs.chosen-os != 'windows-latest' }}
         uses: stateful/vscode-server-action@v1
+        with:
+          timeout: '999999999'       # optional, default: 30000
+
+      - if: ${{ github.event.inputs.chosen-os == 'windows-latest' }}
+        uses: dirkarnez/vscode-server-action@main
         with:
           timeout: '999999999'       # optional, default: 30000
