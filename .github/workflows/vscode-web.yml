@@ -5,6 +5,7 @@ on:
       chosen-os:
         required: true
         type: choice
+        default: 'ubuntu-latest'
         options:
         - windows-latest
         - ubuntu-latest
