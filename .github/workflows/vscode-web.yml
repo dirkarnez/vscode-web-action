@@ -48,7 +48,19 @@ jobs:
         run: |
           git config --global user.name "dirkarnez" && \
           git config --global user.email "smalldirkalex@gmail.com" && \
-          git config --global core.fileMode false
+          git config --global core.fileMode false && \
+          git config --global core.autocrlf false
+
+      - shell: bash
+        run: |
+          git config core.fileMode false && \
+          git config core.autocrlf false
+
+      - working-directory: '${{ github.event.inputs.gh-repo }}'
+        shell: bash
+        run: |
+          git config core.fileMode false && \
+          git config core.autocrlf false
           
       - shell: bash
         if: ${{ github.event.inputs.chosen-os != 'windows-latest' }}
