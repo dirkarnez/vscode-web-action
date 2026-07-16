@@ -19,6 +19,11 @@ on:
         description: 'GitHub repository'
         required: true
         type: string # Supported types: string, choice, boolean, environment
+      install-rust:
+        description: 'Check this box to install Rust'
+        required: true
+        type: boolean
+        default: false
       repo-ref:
         description: 'The branch, tag or SHA to checkout'
         required: false
@@ -67,6 +72,9 @@ jobs:
         run: |
           sudo chmod -R +x . && \
           ls
+          
+      - if: ${{ inputs.install-rust == true }}
+        uses: actions-rust-lang/setup-rust-toolchain@v1
       
     # The branch, tag or SHA to checkout. When checking out the repository that
     # triggered a workflow, this defaults to the reference or SHA for that event.
