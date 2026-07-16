@@ -20,7 +20,7 @@ on:
         required: true
         type: string # Supported types: string, choice, boolean, environment
       install-rust:
-        description: 'Check this box to install Rust'
+        description: 'Install Rust?'
         required: true
         type: boolean
         default: false
