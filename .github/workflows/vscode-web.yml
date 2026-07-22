@@ -50,8 +50,11 @@ permissions:
     actions: read
 
 jobs:
-  test:
+  build:
     runs-on: [ "${{ github.event.inputs.chosen-os }}" ]
+    defaults:
+      run:
+        shell: bash
     steps:
       - uses: actions/checkout@v6
       
