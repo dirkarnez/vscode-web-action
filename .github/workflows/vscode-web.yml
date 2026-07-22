@@ -39,6 +39,11 @@ on:
         required: true
         type: boolean
         default: false
+      install-cygwin:
+        description: 'Install Cygwin? (Windows only)'
+        required: true
+        type: boolean
+        default: false
       repo-ref:
         description: 'The branch, tag or SHA to checkout'
         required: false
@@ -102,6 +107,13 @@ jobs:
 
       - if: ${{ inputs.install-node == true }}
         uses: actions/setup-node@v7
+
+    #  shell: C:\tools\cygwin\bin\bash.exe --login -o igncr '{0}'
+      - if: ${{ inputs.install-cygwin == true && github.event.inputs.chosen-os == 'windows-latest' }}
+        uses: egor-tensin/setup-cygwin@v4
+        with:
+          packages: autoconf automake libtool gcc-g++ gcc-core make openssl cygwin-devel pkg-config openssl-devel
+      
 
     # The branch, tag or SHA to checkout. When checking out the repository that
     # triggered a workflow, this defaults to the reference or SHA for that event.
