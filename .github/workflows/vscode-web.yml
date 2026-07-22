@@ -106,15 +106,10 @@ jobs:
     # The branch, tag or SHA to checkout. When checking out the repository that
     # triggered a workflow, this defaults to the reference or SHA for that event.
     # Otherwise, uses the default branch.
-
-      - if: ${{ github.event.inputs.chosen-os != 'windows-latest' }}
-        uses: dirkarnez/vscode-server-action@main
+    # cwd: '${{ github.event.inputs.gh-repo }}'
+    
+    # - if: ${{ github.event.inputs.chosen-os != 'windows-latest' }}
+      - uses: stateful/vscode-server-action@main
         with:
-          cwd: '${{ github.event.inputs.gh-repo }}'
           timeout: '21600000'       # optional, default: 30000. 6 hrs = 6 * 60 * 60 *  1000 
           
-
-      - if: ${{ github.event.inputs.chosen-os == 'windows-latest' }}
-        uses: dirkarnez/vscode-server-action@main
-        with:
-          timeout: '21600000'       # optional, default: 30000. 6 hrs = 6 * 60 * 60 *  1000 
