@@ -114,9 +114,9 @@ jobs:
         with:
           packages: autoconf automake libtool gcc-g++ gcc-core make openssl cygwin-devel pkg-config openssl-devel
     
-    # stateful/vscode-server-action@main
+    # stateful/vscode-server-action@v1.2.0
     # - if: ${{ github.event.inputs.chosen-os != 'windows-latest' }}
-      - uses: stateful/vscode-server-action@main
+      - uses: stateful/vscode-server-action@v1.2.0
         with:
           cwd: '${{ github.event.inputs.gh-repo }}'
           timeout: '21600000'       # optional, default: 30000. 6 hrs = 6 * 60 * 60 *  1000
