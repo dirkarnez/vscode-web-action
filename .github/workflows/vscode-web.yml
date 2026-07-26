@@ -117,7 +117,7 @@ jobs:
     # stateful/vscode-server-action@v1.2.0
     # - if: ${{ github.event.inputs.chosen-os != 'windows-latest' }}
     # cwd: '${{ github.event.inputs.gh-repo }}'
-      - uses: dirkarnez/vscode-server-action@main
+      - uses: dirkarnez/vscode-server-action@v1.0.0
         with:
           cwd: '${{ github.event.inputs.gh-repo }}'
           timeout: '21600000'       # optional, default: 30000. 6 hrs = 6 * 60 * 60 *  1000
