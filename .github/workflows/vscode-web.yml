@@ -86,6 +86,9 @@ jobs:
           path: '${{ github.event.inputs.gh-repo }}'
           token: '${{ secrets.GH_PAT }}' # `GH_PAT` is a secret that contains your PAT
           ref: '${{ github.event.inputs.repo-ref }}' # The branch, tag or SHA to checkout
+
+      - if: ${{ failure() }}
+        run: echo "❌ Checkout failed! Please check if the secrets.GH_PAT is still valid."
           
       - shell: bash
         run: |
