@@ -129,8 +129,12 @@ jobs:
         uses: nuget/setup-nuget@v3
           
       - if: ${{ inputs.install-winsdk == true && github.event.inputs.chosen-os == 'windows-latest' }}
-        shell: cmd
-        run: winget install -e --id Microsoft.WindowsSDK.10.0.26100 --accept-package-agreements --accept-source-agreements
+        uses: GuillaumeFalourd/setup-windows10-sdk-action@v2.5
+        with:
+          sdk-version: 26100
+          
+        # shell: cmd
+        # run: winget install -e --id Microsoft.WindowsSDK.10.0.26100 --accept-package-agreements --accept-source-agreements
 
       - if: ${{ inputs.install-winwdk == true && github.event.inputs.chosen-os == 'windows-latest' }}
         shell: cmd
