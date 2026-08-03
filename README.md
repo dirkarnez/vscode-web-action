@@ -4,6 +4,10 @@ vscode-web-action
 ```markdown
 <kbd>[**vscode-web-action**](https://github.com/dirkarnez/vscode-web-action/actions/workflows/vscode-web.yml)</kbd><br>
 ```
+### TODOs
+- [ ] preinstall plugins
+- [ ] `cwd`
+
 ### Notes
 - use local settings
     - `git config core.filemode false`
