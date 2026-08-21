@@ -120,7 +120,8 @@ jobs:
       - if: ${{ inputs.install-python == true }}
         uses: actions/setup-python@v7
         with:
-          python-version: '3.13' 
+          python-version: '>=3.13'
+          check-latest: true
 
       - if: ${{ inputs.install-go == true }}
         uses: actions/setup-go@v6
