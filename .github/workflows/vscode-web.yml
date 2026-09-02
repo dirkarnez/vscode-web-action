@@ -24,6 +24,16 @@ on:
         required: true
         type: boolean
         default: false
+      install-java:
+        description: 'Install Java?'
+        required: true
+        type: boolean
+        default: false
+      install-dotnet:
+        description: 'Install .NET?'
+        required: true
+        type: boolean
+        default: false
       install-python:
         description: 'Install Python?'
         required: true
@@ -113,6 +123,11 @@ jobs:
         run: |
           sudo chmod -R +x . && \
           ls
+      - if: ${{ inputs.install-java == true }}
+        uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: 'latest'
           
       - if: ${{ inputs.install-rust == true }}
         uses: actions-rust-lang/setup-rust-toolchain@v1
@@ -123,6 +138,12 @@ jobs:
           python-version: '>=3.13'
           check-latest: true
 
+      - if: ${{ inputs.install-dotnet == true }}
+        uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: latest
+          dotnet-channel: LTS
+          
       - if: ${{ inputs.install-go == true }}
         uses: actions/setup-go@v6
         with:
