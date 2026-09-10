@@ -167,6 +167,8 @@ jobs:
 
       - if: ${{ inputs.install-node == true }}
         uses: actions/setup-node@v7
+        with:
+          check-latest: true
 
       - if: ${{ inputs.install-vstudio == true && github.event.inputs.chosen-os == 'windows-latest' }}
         uses: nuget/setup-nuget@v3
