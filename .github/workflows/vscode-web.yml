@@ -44,6 +44,16 @@ on:
         required: true
         type: boolean
         default: false
+      install-west:
+        description: 'Install Zephyr west?'
+        required: true
+        type: boolean
+        default: false
+      install-cmake:
+        description: 'Install CMake?'
+        required: true
+        type: boolean
+        default: false
       install-node:
         description: 'Install Node.js?'
         required: true
@@ -138,6 +148,12 @@ jobs:
       - if: ${{ inputs.install-docker-buildx == true }}
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
+
+      - if: ${{ inputs.install-cmake == true }}
+        name: Setup cmake
+        uses: jwlawson/actions-setup-cmake@v2
+        with:
+          cmake-version: '3.24.x'
       
       - if: ${{ inputs.install-java == true }}
         uses: actions/setup-java@v6
@@ -148,11 +164,14 @@ jobs:
       - if: ${{ inputs.install-rust == true }}
         uses: actions-rust-lang/setup-rust-toolchain@v1
         
-      - if: ${{ inputs.install-python == true }}
+      - if: ${{ inputs.install-python == true ||  inputs.install-west == true}}
         uses: actions/setup-python@v7
         with:
           python-version: '>=3.13'
           check-latest: true
+          
+      - if: ${{ inputs.install-west == true }}
+        run: pip install -U west
 
       - if: ${{ inputs.install-dotnet == true }}
         uses: actions/setup-dotnet@v6
