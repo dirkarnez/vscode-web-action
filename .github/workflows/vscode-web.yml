@@ -153,7 +153,7 @@ jobs:
         name: Setup cmake
         uses: jwlawson/actions-setup-cmake@v2
         with:
-          cmake-version: '3.24.x'
+          cmake-version: '3.29.x'
       
       - if: ${{ inputs.install-java == true }}
         uses: actions/setup-java@v6
