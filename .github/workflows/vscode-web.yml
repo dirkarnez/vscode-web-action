@@ -90,10 +90,6 @@ on:
         default: 'main'
         type: string # Supported types: string, choice, boolean, environment
 
-permissions:
-    contents: write
-    actions: read
-
 jobs:
   build:
     runs-on: [ "${{ github.event.inputs.chosen-os }}" ]
@@ -109,7 +105,7 @@ jobs:
           # Default: ${{ github.repository }}
           repository: '${{ github.event.inputs.gh-user }}/${{ github.event.inputs.gh-repo }}'
           path: '${{ github.event.inputs.gh-repo }}'
-          token: '${{ secrets.GH_PAT }}' # `GH_PAT` is a secret that contains your PAT
+          token: '${{ secrets.GH_FGPAT }}' # `GH_PAT` is a secret that contains your PAT
           ref: '${{ github.event.inputs.repo-ref }}' # The branch, tag or SHA to checkout
 
       - if: ${{ failure() }}
