@@ -109,7 +109,7 @@ jobs:
           ref: '${{ github.event.inputs.repo-ref }}' # The branch, tag or SHA to checkout
 
       - if: ${{ failure() }}
-        run: echo "❌ Checkout failed! Please check if the secrets.GH_PAT is still valid."
+        run: echo "❌ Checkout failed! Please check if the secrets.GH_FGPAT is still valid."
 
       - shell: bash
         run: |
